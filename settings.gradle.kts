@@ -21,3 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "network_study"
 include(":app")
+include(":data")
+include(":presentation")
+include(":domain")
