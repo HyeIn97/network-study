@@ -4,12 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.network_study"
+    namespace = "com.example.data"
     compileSdk = 34
 
     defaultConfig {
         minSdk = 28
-        targetSdk = 34
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
