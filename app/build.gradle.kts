@@ -1,3 +1,5 @@
+import com.android.sdklib.repository.meta.DetailsTypes.AddonDetailsType.Libraries
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
