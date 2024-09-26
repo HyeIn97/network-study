@@ -1,20 +1,16 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.library")
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.example.network_study"
+    namespace = "com.example.presentation"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.network_study"
         minSdk = 28
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,10 +28,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -45,12 +44,18 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(project(":data"))
     implementation(project(":domain"))
-    implementation(project(":presentation"))
 
+    // Lifecycle
+    implementation(Dependency.Lifecycle.LIFECYCLE)
+    implementation(Dependency.Lifecycle.VIEWMODEL)
+
+    // Hilt
     implementation(Dependency.Libraries.HILT)
     kapt(Dependency.Libraries.HILT_COMPILER)
+
+    // androidX
+    implementation(Dependency.AndroidX.COROUTINES)
 }
 
 kapt {
