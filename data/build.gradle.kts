@@ -41,8 +41,13 @@ dependencies {
 
     implementation(project(":domain"))
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    // Hilt
+    implementation(Dependency.Libraries.HILT)
+    kapt(Dependency.Libraries.HILT_COMPILER)
+
+    // Retrofit
+    implementation(Dependency.Libraries.GSON)
+    implementation(Dependency.Libraries.RETROFIT)
 }
 
 kapt {

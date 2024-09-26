@@ -1,5 +1,3 @@
-import com.android.sdklib.repository.meta.DetailsTypes.AddonDetailsType.Libraries
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -51,8 +49,8 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":presentation"))
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation(Dependency.Libraries.HILT)
+    kapt(Dependency.Libraries.HILT_COMPILER)
 }
 
 kapt {

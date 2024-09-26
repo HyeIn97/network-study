@@ -28,6 +28,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -42,8 +46,16 @@ dependencies {
 
     implementation(project(":domain"))
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    // Lifecycle
+    implementation(Dependency.Lifecycle.LIFECYCLE)
+    implementation(Dependency.Lifecycle.VIEWMODEL)
+
+    // Hilt
+    implementation(Dependency.Libraries.HILT)
+    kapt(Dependency.Libraries.HILT_COMPILER)
+
+    // androidX
+    implementation(Dependency.AndroidX.COROUTINES)
 }
 
 kapt {
