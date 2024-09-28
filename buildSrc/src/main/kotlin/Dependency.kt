@@ -24,5 +24,6 @@ object Dependency {
         const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT_COMPILER_VERSION}"
         const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.NETWORK_VERSION}"
         const val GSON = "com.google.code.gson:gson:${Versions.NETWORK_VERSION}"
+        const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${Versions.NETWORK_VERSION}"
     }
 }

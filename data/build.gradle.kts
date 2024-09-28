@@ -48,6 +48,7 @@ dependencies {
     // Retrofit
     implementation(Dependency.Libraries.GSON)
     implementation(Dependency.Libraries.RETROFIT)
+    implementation(Dependency.Libraries.GSON_CONVERTER)
 }
 
 kapt {
