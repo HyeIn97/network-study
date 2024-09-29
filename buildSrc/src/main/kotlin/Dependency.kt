@@ -5,8 +5,8 @@ object Dependency {
         const val LIFECYCLE_VERSION = "2.8.5"
 
         // Library
-        const val HILT_VERSION = "2.44"
-        const val HILT_COMPILER_VERSION = "2.44"
+        const val HILT_VERSION = "2.48"
+        const val HILT_COMPILER_VERSION = "2.48"
         const val NETWORK_VERSION = "2.11.0"
     }
 
