@@ -16,6 +16,10 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
+    fun providerInterceptor(networkConfig: NetworkConfig) = NetWorkInterceptor(networkConfig)
+
+    @Provides
+    @Singleton
     fun providerOkHttpClick(interceptor: NetWorkInterceptor): OkHttpClient = OkHttpClient.Builder().addNetworkInterceptor(interceptor).build()
 
     @Provides
