@@ -1,7 +1,7 @@
 package com.example.data.di
 
-import com.example.data.network.NetWorkInterceptor
-import com.example.data.network.NetworkConfig
+import com.example.data.remote.network.NetWorkInterceptor
+import com.example.data.remote.config.NetworkConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
