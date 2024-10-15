@@ -46,6 +46,10 @@ dependencies {
 
     implementation(project(":domain"))
 
+    // View
+    implementation(Dependency.View.ACTIVITY)
+    implementation(Dependency.View.FRAGMENT)
+
     // Lifecycle
     implementation(Dependency.Lifecycle.LIFECYCLE)
     implementation(Dependency.Lifecycle.VIEWMODEL)
@@ -55,6 +59,7 @@ dependencies {
     kapt(Dependency.Libraries.HILT_COMPILER)
 
     // androidX
+    implementation(Dependency.AndroidX.CORE)
     implementation(Dependency.AndroidX.COROUTINES)
 }
 
