@@ -10,7 +10,7 @@ import com.example.presentation.databinding.UiBindingExpectationBinding
 
 abstract class BaseFragment<T : ViewBinding> : Fragment() {
     private var _binding: T? = null
-    val binding get() = _binding ?: bindingExpectation()
+    val binding get() = _binding !!
 
     abstract fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): T
 
