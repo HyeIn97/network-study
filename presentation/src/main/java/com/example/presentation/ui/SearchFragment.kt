@@ -1,6 +1,7 @@
 package com.example.presentation.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,13 +30,21 @@ class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
 
     private fun lifeCycleScope() = lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
-
+            launch {
+                viewModel.search.collect {
+                    it?.let {
+                        Log.d("debug", "결과 값  : $it")
+                    }
+                }
+            }
         }
     }
 
     private fun listener() = with(binding) {
         searchButton.setOnClickListener {
-
+            val query = searchEdit.toString()
+            Log.d("debug", "검색어 : $query")
+            viewModel.getSearch(query, 1, 10)
         }
     }
 
