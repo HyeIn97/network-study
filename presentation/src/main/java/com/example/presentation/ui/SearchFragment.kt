@@ -18,6 +18,12 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
     private val viewModel: SearchViewModel by viewModels()
+
+    private val bookList = arrayListOf<SearchModel.BookModel>()
+    private val bookAdapter by lazy {
+        BookAdapter(bookList)
+    }
+
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FragmentSearchBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,5 +56,12 @@ class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
 
     private fun initAdapter() = with(binding) {
 
+
+    private fun initAdapter() = with(binding) {
+        bookRecycler.apply {
+            itemAnimator = null
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = bookAdapter
+        }
     }
 }
