@@ -11,6 +11,7 @@ object Dependency {
         const val HILT_VERSION = "2.48"
         const val HILT_COMPILER_VERSION = "2.48"
         const val NETWORK_VERSION = "2.11.0"
+        const val GLIDE_VERSION = "4.16.0"
     }
 
     object View {
@@ -34,5 +35,6 @@ object Dependency {
         const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.NETWORK_VERSION}"
         const val GSON = "com.google.code.gson:gson:${Versions.NETWORK_VERSION}"
         const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${Versions.NETWORK_VERSION}"
+        const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
     }
 }

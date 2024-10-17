@@ -61,6 +61,9 @@ dependencies {
     // androidX
     implementation(Dependency.AndroidX.CORE)
     implementation(Dependency.AndroidX.COROUTINES)
+
+    //Glide
+    implementation(Dependency.Libraries.GLIDE)
 }
 
 kapt {
