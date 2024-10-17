@@ -12,6 +12,6 @@ class SearchHelper {
             bookList.add(SearchModel.BookModel(book.title ?: "", book.image ?: "", book.author ?: ""))
         }
 
-        return SearchModel(entity.response.total, entity.response.start, entity.response.display, bookList)
+        return SearchModel(entity.total, entity.start, entity.display, bookList)
     }
 }
