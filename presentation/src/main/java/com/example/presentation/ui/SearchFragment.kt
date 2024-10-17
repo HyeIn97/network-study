@@ -96,10 +96,25 @@ class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
                 viewModel.getSearch(viewModel.query, viewModel.start, viewModel.display)
 
                 return@setOnEditorActionListener false
+            }
+
+            return@setOnEditorActionListener true
+        }
+
+        bookRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val lastPosition = (bookRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                val itemTotalCount = (bookRecycler.adapter?.itemCount ?: 0) - 1
+
+                if (lastPosition == itemTotalCount && (viewModel.totalCount > itemTotalCount + 1)) {
+                    ++viewModel.start
+                    viewModel.getSearch(viewModel.query, viewModel.start, viewModel.display)
+                }
+            }
+        })
     }
-
-    private fun initAdapter() = with(binding) {
-
 
     private fun initAdapter() = with(binding) {
         bookRecycler.apply {
