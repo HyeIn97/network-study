@@ -48,10 +48,24 @@ class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
 
     private fun listener() = with(binding) {
         searchButton.setOnClickListener {
-            val query = searchEdit.toString()
-            Log.d("debug", "검색어 : $query")
-            viewModel.getSearch(query, 1, 10)
+            viewModel.initQuery = true
+            viewModel.start = 1
+            viewModel.query = searchEdit.text.toString()
+
+            viewModel.getSearch(viewModel.query, viewModel.start, viewModel.display)
         }
+
+        searchEdit.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                v.clearFocus()
+
+                viewModel.initQuery = true
+                viewModel.start = 1
+                viewModel.query = searchEdit.text.toString()
+
+                viewModel.getSearch(viewModel.query, viewModel.start, viewModel.display)
+
+                return@setOnEditorActionListener false
     }
 
     private fun initAdapter() = with(binding) {
