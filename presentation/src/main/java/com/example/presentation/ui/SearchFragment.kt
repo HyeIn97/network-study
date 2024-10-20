@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.SearchModel
+import com.example.presentation.R
 import com.example.presentation.adapter.BookAdapter
 import com.example.presentation.base.BaseFragment
 import com.example.presentation.databinding.FragmentSearchBinding
@@ -46,9 +47,9 @@ class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
                         binding.run {
                             if (it.total > 0) {
                                 if (viewModel.initQuery) {
-                                    countText.text = it.total.toString()
+                                    totalText.text = getString(R.string.search_count, it.total)
 
-                                    countLayout.visibility = View.VISIBLE
+                                    totalText.visibility = View.VISIBLE
                                     binding.emptyText.visibility = View.GONE
                                     binding.bookRecycler.visibility = View.VISIBLE
 
@@ -65,7 +66,7 @@ class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
                             } else {
                                 bookList.clear()
 
-                                countLayout.visibility = View.GONE
+                                totalText.visibility = View.GONE
                                 binding.emptyText.visibility = View.VISIBLE
                                 binding.bookRecycler.visibility = View.GONE
                             }
