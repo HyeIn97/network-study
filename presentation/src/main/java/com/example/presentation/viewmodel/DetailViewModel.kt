@@ -1,7 +1,7 @@
 package com.example.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.presentation.DetailModel
+import com.example.presentation.model.DetailModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

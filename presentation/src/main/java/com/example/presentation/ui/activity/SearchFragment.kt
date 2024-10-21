@@ -13,7 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.SearchModel
-import com.example.presentation.DetailModel
+import com.example.presentation.model.DetailModel
 import com.example.presentation.R
 import com.example.presentation.adapter.BookAdapter
 import com.example.presentation.base.BaseFragment

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.presentation.DetailModel
+import com.example.presentation.model.DetailModel
 import com.example.presentation.databinding.ActivityDetailBinding
 import com.example.presentation.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
