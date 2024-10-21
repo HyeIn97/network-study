@@ -5,14 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    android:background="@color/white"
+    tools:context=".ui.activity.DetailActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/back_btn"
         android:layout_width="45dp"
         android:layout_height="45dp"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
         android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toTopOf="@id/line"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,6 +23,7 @@
         android:id="@+id/line"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginTop="10dp"
         android:background="@color/gray20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,11 +56,12 @@
         app:layout_constraintStart_toStartOf="@id/detail_image"
         app:layout_constraintTop_toBottomOf="@id/detail_image" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/like_btn"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/ic_un_like"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/selector_like_btn"
+        android:button="@null"
         app:layout_constraintBottom_toBottomOf="@id/detail_title"
         app:layout_constraintEnd_toEndOf="@id/detail_image"
         app:layout_constraintTop_toTopOf="@id/detail_title" />
