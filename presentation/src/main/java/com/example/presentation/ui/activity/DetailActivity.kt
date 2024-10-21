@@ -1,3 +1,15 @@
+package com.example.presentation.ui.activity
+
+import android.os.Build
+import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.example.presentation.DetailModel
+import com.example.presentation.databinding.ActivityDetailBinding
+import com.example.presentation.viewmodel.DetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
     private val viewModel: DetailViewModel by viewModels()
@@ -14,5 +26,23 @@ class DetailActivity : AppCompatActivity() {
         } else {
             intent.getParcelableExtra("data")
         }
+
+        initView()
+        listener()
     }
+
+    private fun initView() = with(binding) {
+        detailImage.setUrl(viewModel.detailModel?.image ?: "")
+        detailTitle.text = viewModel.detailModel?.title ?: ""
     }
+
+    private fun listener() = with(binding) {
+        backBtn.setOnClickListener {
+            finish()
+        }
+
+        likeBtn.setOnClickListener {
+            likeBtn.isChecked
+        }
+    }
+}
