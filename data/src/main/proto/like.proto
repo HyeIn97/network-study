@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "com.codelab.android.datastore";
+option java_multiple_files = true;
+
+message Like{
+    repeated LikeList like = 1;
+}
+
+message LikeList{
+  string link = 2;
+  string name = 1;
+}
