@@ -1,8 +1,11 @@
+import com.google.protobuf.gradle.id
+
 plugins {
     id("com.android.library")
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.protobuf") version "0.9.1"
 }
 
 android {
@@ -49,8 +52,25 @@ dependencies {
     implementation(Dependency.Libraries.GSON)
     implementation(Dependency.Libraries.RETROFIT)
     implementation(Dependency.Libraries.GSON_CONVERTER)
+
+    // DataStore
+    implementation(Dependency.Libraries.PROTOBUF)
+    implementation(Dependency.AndroidX.DATASTORE)
 }
 
 kapt {
     correctErrorTypes = true
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.25.1"
+    }
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                id("java") { option("lite") }
+            }
+        }
+    }
 }
