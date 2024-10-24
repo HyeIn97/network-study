@@ -30,6 +30,7 @@ object Dependency {
         const val CORE = "androidx.core:core-ktx:${Versions.CORE_VERSION}"
         const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES_VERSION}"
         const val DATASTORE = "androidx.datastore:datastore-core:${Versions.DATASTORE_VERSION}"
+        const val DATASTORE_PREFERENCES = "androidx.datastore:datastore-preferences-core:${Versions.DATASTORE_VERSION}"
     }
 
     object Libraries {

@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
-    id("com.google.protobuf") version "0.9.1"
+    id("com.google.protobuf") version "0.9.3"
 }
 
 android {
@@ -56,6 +56,7 @@ dependencies {
     // DataStore
     implementation(Dependency.Libraries.PROTOBUF)
     implementation(Dependency.AndroidX.DATASTORE)
+    implementation(Dependency.AndroidX.DATASTORE_PREFERENCES)
 }
 
 kapt {
@@ -69,7 +70,7 @@ protobuf {
     generateProtoTasks {
         all().forEach { task ->
             task.builtins {
-                id("java") { option("lite") }
+                create("java")
             }
         }
     }
