@@ -1,4 +1,4 @@
-import com.google.protobuf.gradle.id
+import com.google.protobuf.gradle.proto
 
 plugins {
     id("com.android.library")
@@ -31,6 +31,16 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    sourceSets {
+        getByName("main") {
+            proto {
+                srcDirs("src/main/proto")
+            }
+            java {
+                srcDir("build/generated/source/proto/main/java")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -54,23 +64,28 @@ dependencies {
     implementation(Dependency.Libraries.GSON_CONVERTER)
 
     // DataStore
-    implementation(Dependency.Libraries.PROTOBUF)
-    implementation(Dependency.AndroidX.DATASTORE)
-    implementation(Dependency.AndroidX.DATASTORE_PREFERENCES)
+    implementation("androidx.datastore:datastore:1.1.1")
+    implementation("androidx.datastore:datastore-core:1.1.1")
+    implementation("com.google.protobuf:protobuf-kotlin-lite:3.24.1")
+    implementation("com.google.protobuf:protobuf-javalite:3.24.1")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 }
 
 kapt {
     correctErrorTypes = true
+    generateStubs = true
 }
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.25.1"
+        artifact = "com.google.protobuf:protoc:3.24.1"
     }
     generateProtoTasks {
         all().forEach { task ->
             task.builtins {
-                create("java")
+                create("java") {
+                    option("lite")
+                }
             }
         }
     }

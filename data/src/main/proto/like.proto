@@ -3,7 +3,7 @@ syntax = "proto3";
 option java_package = "com.example.data.proto";
 option java_multiple_files = true;
 
-message LikeProto{
+message LikePreferences{
     repeated LikeList like = 1;
 }
 

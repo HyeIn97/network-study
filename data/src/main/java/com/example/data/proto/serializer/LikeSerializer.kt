@@ -2,20 +2,22 @@ package com.example.data.proto.serializer
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
-import com.example.data.proto.LikeProto
-import com.google.protobuf.InvalidProtocolBufferException
+import com.example.data.LikePreferences
+import androidx.datastore.preferences.protobuf.InvalidProtocolBufferException
 import java.io.InputStream
 import java.io.OutputStream
 
-object LikeSerializer : Serializer<LikeProto> {
-    override val defaultValue: LikeProto = LikeProto.getDefaultInstance()
-    override suspend fun readFrom(input: InputStream): LikeProto {
+object LikeSerializer : Serializer<LikePreferences> {
+    override val defaultValue: LikePreferences
+        get() = LikePreferences.getDefaultInstance()
+
+    override suspend fun readFrom(input: InputStream): LikePreferences {
         try {
-            return LikeProto.parseFrom(input)
+            return LikePreferences.parseFrom(input)
         } catch (exception: InvalidProtocolBufferException) {
             throw CorruptionException("Cannot read proto.", exception)
         }
     }
 
-    override suspend fun writeTo(t: LikeProto, output: OutputStream) = t.writeTo(output)
+    override suspend fun writeTo(t: LikePreferences, output: OutputStream) = t.writeTo(output)
 }
