@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.datastore.core.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -52,6 +53,14 @@ dependencies {
     // Hilt
     implementation(Dependency.Libraries.HILT)
     kapt(Dependency.Libraries.HILT_COMPILER)
+
+    // Retrofit
+    implementation(Dependency.Libraries.GSON)
+    implementation(Dependency.Libraries.RETROFIT)
+    implementation(Dependency.Libraries.GSON_CONVERTER)
+
+    // DataStore
+    implementation(Dependency.AndroidX.DATASTORE)
 }
 
 kapt {

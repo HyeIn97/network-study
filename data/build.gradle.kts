@@ -64,11 +64,9 @@ dependencies {
     implementation(Dependency.Libraries.GSON_CONVERTER)
 
     // DataStore
-    implementation("androidx.datastore:datastore:1.1.1")
-    implementation("androidx.datastore:datastore-core:1.1.1")
-    implementation("com.google.protobuf:protobuf-kotlin-lite:3.24.1")
-    implementation("com.google.protobuf:protobuf-javalite:3.24.1")
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation(Dependency.AndroidX.DATASTORE)
+    implementation(Dependency.Libraries.PROTOBUF_JAVA_LITE)
+    implementation(Dependency.Libraries.PROTOBUF_KOTLIN_LITE)
 }
 
 kapt {

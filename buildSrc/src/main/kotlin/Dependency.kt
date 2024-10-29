@@ -6,14 +6,14 @@ object Dependency {
         const val COROUTINES_VERSION = "1.3.9"
         const val LIFECYCLE_VERSION = "2.8.5"
         const val CORE_VERSION = "1.13.1"
-        const val DATASTORE_VERSION = "1.0.0"
+        const val DATASTORE_VERSION = "1.1.1"
 
         // Library
         const val HILT_VERSION = "2.48"
         const val HILT_COMPILER_VERSION = "2.48"
         const val NETWORK_VERSION = "2.11.0"
         const val GLIDE_VERSION = "4.16.0"
-        const val PROTOBUF_VERSION = "3.18.0"
+        const val PROTOBUF_VERSION = "3.24.1"
     }
 
     object View {
@@ -29,8 +29,7 @@ object Dependency {
     object AndroidX {
         const val CORE = "androidx.core:core-ktx:${Versions.CORE_VERSION}"
         const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES_VERSION}"
-        const val DATASTORE = "androidx.datastore:datastore-core:${Versions.DATASTORE_VERSION}"
-        const val DATASTORE_PREFERENCES = "androidx.datastore:datastore-preferences-core:${Versions.DATASTORE_VERSION}"
+        const val DATASTORE = "androidx.datastore:datastore:${Versions.DATASTORE_VERSION}"
     }
 
     object Libraries {
@@ -40,6 +39,7 @@ object Dependency {
         const val GSON = "com.google.code.gson:gson:${Versions.NETWORK_VERSION}"
         const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${Versions.NETWORK_VERSION}"
         const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
-        const val PROTOBUF = "com.google.protobuf:protobuf-javalite:${Versions.PROTOBUF_VERSION}"
+        const val PROTOBUF_JAVA_LITE = "com.google.protobuf:protobuf-javalite:${Versions.PROTOBUF_VERSION}"
+        const val PROTOBUF_KOTLIN_LITE = "com.google.protobuf:protobuf-kotlin-lite:${Versions.PROTOBUF_VERSION}"
     }
 }
