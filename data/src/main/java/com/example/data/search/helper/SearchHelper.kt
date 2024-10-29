@@ -1,8 +1,8 @@
-package com.example.data.helper
+package com.example.data.search.helper
 
 import com.example.data.api.NaverApi
-import com.example.data.entity.BookEntity
-import com.example.domain.model.SearchModel
+import com.example.data.search.entity.BookEntity
+import com.example.domain.search.model.SearchModel
 
 class SearchHelper {
     fun searchEntityToModel(entity: NaverApi<BookEntity>): SearchModel {

@@ -1,10 +1,10 @@
-package com.example.data.datasourceImpl
+package com.example.data.search.datasourceImpl
 
 import com.example.data.api.NaverApi
 import com.example.data.api.SearchApi
 import com.example.data.api.apiCallToFlow
-import com.example.data.datasource.SearchDataSource
-import com.example.data.entity.BookEntity
+import com.example.data.search.datasource.SearchDataSource
+import com.example.data.search.entity.BookEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

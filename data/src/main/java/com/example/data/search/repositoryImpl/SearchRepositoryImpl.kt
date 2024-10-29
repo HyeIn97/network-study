@@ -1,9 +1,9 @@
-package com.example.data.repositoryImpl
+package com.example.data.search.repositoryImpl
 
-import com.example.data.datasource.SearchDataSource
-import com.example.data.helper.SearchHelper
-import com.example.domain.model.SearchModel
-import com.example.domain.repository.SearchRepository
+import com.example.data.search.datasource.SearchDataSource
+import com.example.data.search.helper.SearchHelper
+import com.example.domain.search.model.SearchModel
+import com.example.domain.search.repository.SearchRepository
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 

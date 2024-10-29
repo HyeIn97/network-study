@@ -1,4 +1,4 @@
-package com.example.domain.model
+package com.example.domain.search.model
 
 data class SearchModel(
     val total: Int,

@@ -1,4 +1,4 @@
-package com.example.presentation.ui.activity
+package com.example.presentation.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,12 +12,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.model.SearchModel
+import com.example.domain.search.model.SearchModel
 import com.example.presentation.model.DetailModel
 import com.example.presentation.R
 import com.example.presentation.adapter.BookAdapter
 import com.example.presentation.base.BaseFragment
 import com.example.presentation.databinding.FragmentSearchBinding
+import com.example.presentation.ui.activity.DetailActivity
 import com.example.presentation.util.ItemClickListener
 import com.example.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint

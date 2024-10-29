@@ -1,4 +1,4 @@
-package com.example.data.entity
+package com.example.data.search.entity
 
 data class BookEntity(
     val title: String? = "",

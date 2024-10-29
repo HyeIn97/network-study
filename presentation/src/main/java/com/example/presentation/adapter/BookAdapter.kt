@@ -3,7 +3,7 @@ package com.example.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.model.SearchModel
+import com.example.domain.search.model.SearchModel
 import com.example.presentation.model.DetailModel
 import com.example.presentation.databinding.ItemBookBinding
 import com.example.presentation.util.ItemClickListener

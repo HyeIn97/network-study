@@ -2,8 +2,8 @@ package com.example.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.SearchModel
-import com.example.domain.usecase.GetSearchUseCase
+import com.example.domain.search.model.SearchModel
+import com.example.domain.search.usecase.GetSearchUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

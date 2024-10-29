@@ -1,7 +1,7 @@
-package com.example.data.datasource
+package com.example.data.search.datasource
 
 import com.example.data.api.NaverApi
-import com.example.data.entity.BookEntity
+import com.example.data.search.entity.BookEntity
 import kotlinx.coroutines.flow.Flow
 
 interface SearchDataSource {
