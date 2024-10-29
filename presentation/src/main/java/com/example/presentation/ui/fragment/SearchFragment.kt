@@ -23,7 +23,7 @@ import com.example.presentation.util.ItemClickListener
 import com.example.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
+// 테스트 주석
 @AndroidEntryPoint
 class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
     private val viewModel: SearchViewModel by viewModels()
