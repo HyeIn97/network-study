@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.network_study.di
 
 import com.example.data.api.SearchApi
 import com.example.data.remote.config.NetworkConfig

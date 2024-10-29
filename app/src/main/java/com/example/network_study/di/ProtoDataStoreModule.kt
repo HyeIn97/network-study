@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.network_study.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
