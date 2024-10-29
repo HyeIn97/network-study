@@ -1,13 +1,15 @@
 syntax = "proto3";
 
-option java_package = "com.example.data.proto";
+option java_package = "com.example.data";
 option java_multiple_files = true;
 
 message LikePreferences{
-    repeated LikeList like = 1;
+  repeated Like like = 1;
 }
 
-message LikeList{
-  string link = 2;
-  string name = 1;
+message Like{
+  string title = 1 ;
+  string image = 2;
+  string author = 3 ;
+  string link = 4;
 }
