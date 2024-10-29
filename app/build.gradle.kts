@@ -61,6 +61,8 @@ dependencies {
 
     // DataStore
     implementation(Dependency.AndroidX.DATASTORE)
+    implementation(Dependency.Libraries.PROTOBUF_JAVA_LITE)
+    implementation(Dependency.Libraries.PROTOBUF_KOTLIN_LITE)
 }
 
 kapt {
