@@ -7,4 +7,5 @@ interface LikeDataSource {
     fun getLike(): Flow<ArrayList<LikeModel>>
     suspend fun setLike(like: LikeModel)
     suspend fun deleteLike(like: LikeModel)
+    fun isLike(likeUrlKey: String): Flow<Boolean>
 }
