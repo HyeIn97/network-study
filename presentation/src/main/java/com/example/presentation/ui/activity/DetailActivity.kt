@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.presentation.model.DetailModel
 import com.example.presentation.databinding.ActivityDetailBinding
+import com.example.presentation.model.DetailLikeModel
 import com.example.presentation.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,8 +21,8 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(LayoutInflater.from(this), null, false)
         setContentView(binding.root)
 
-        viewModel.detailModel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra("data", DetailModel::class.java)
+        viewModel.like = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("data", DetailLikeModel::class.java)
         } else {
             intent.getParcelableExtra("data")
         }
@@ -32,8 +32,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initView() = with(binding) {
-        detailImage.setUrl(viewModel.detailModel?.image ?: "")
-        detailTitle.text = viewModel.detailModel?.title ?: ""
+        detailImage.setUrl(viewModel.like?.image ?: "")
+        detailTitle.text = viewModel.like?.title ?: ""
     }
 
     private fun listener() = with(binding) {
@@ -42,7 +42,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         likeBtn.setOnClickListener {
-            likeBtn.isChecked
+            if (likeBtn.isChecked) viewModel else viewModel
         }
     }
 }

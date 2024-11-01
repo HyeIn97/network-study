@@ -4,16 +4,26 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.search.model.SearchModel
-import com.example.presentation.model.DetailModel
 import com.example.presentation.databinding.ItemBookBinding
+import com.example.presentation.model.DetailLikeModel
 import com.example.presentation.util.ItemClickListener
 
-class BookAdapter(private val list: ArrayList<SearchModel.BookModel>, private val clickListener: ItemClickListener<DetailModel>) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = BookViewHolder(ItemBookBinding.inflate(LayoutInflater.from(parent.context), parent, false)).apply {
-        itemView.setOnClickListener {
-            clickListener.itemClick(adapterPosition, DetailModel(list[adapterPosition].title, list[adapterPosition].image))
+class BookAdapter(private val list: ArrayList<SearchModel.BookModel>, private val clickListener: ItemClickListener<DetailLikeModel>) :
+    RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        BookViewHolder(ItemBookBinding.inflate(LayoutInflater.from(parent.context), parent, false)).apply {
+            itemView.setOnClickListener {
+                clickListener.itemClick(
+                    adapterPosition,
+                    DetailLikeModel(
+                        list[adapterPosition].title,
+                        list[adapterPosition].image,
+                        list[adapterPosition].author,
+                        list[adapterPosition].link
+                    )
+                )
+            }
         }
-    }
 
     override fun getItemCount() = list.size
 

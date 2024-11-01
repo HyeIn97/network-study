@@ -8,4 +8,5 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor() : ViewModel() {
     var detailModel: DetailModel? = null
+    var like: DetailLikeModel? = null
 }
