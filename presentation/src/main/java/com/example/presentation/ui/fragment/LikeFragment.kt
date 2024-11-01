@@ -8,6 +8,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.proto.model.LikeModel
+import com.example.presentation.adapter.LikeAdapter
 import com.example.presentation.base.BaseFragment
 import com.example.presentation.databinding.FragmentLikeBinding
 import com.example.presentation.viewmodel.LikeViewModel
@@ -17,6 +20,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LikeFragment : BaseFragment<FragmentLikeBinding>() {
     private val viewModel: LikeViewModel by viewModels()
+    private val likeList = arrayListOf<LikeModel>()
+    private val likeAdapter by lazy {
+        LikeAdapter(likeList)
+    }
+
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FragmentLikeBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,10 +55,18 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
     }
 
     private fun hasLike() {
-
+        initAdapter()
     }
 
     private fun notLike() {
 
+    }
+
+    private fun initAdapter() = with(binding) {
+        likeRecycler.apply {
+            itemAnimator = null
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = likeAdapter
+        }
     }
 }
