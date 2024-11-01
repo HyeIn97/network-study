@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.domain.proto.model.LikeModel
 import com.example.presentation.adapter.LikeAdapter
 import com.example.presentation.base.BaseFragment
@@ -42,12 +42,12 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
                         binding.likeRecycler.visibility = View.VISIBLE
                         binding.emptyTxt.visibility = View.GONE
 
+                        likeList.addAll(it)
+
                         hasLike()
                     } else {
                         binding.likeRecycler.visibility = View.GONE
                         binding.emptyTxt.visibility = View.VISIBLE
-
-                        notLike()
                     }
                 }
             }
@@ -58,14 +58,10 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
         initAdapter()
     }
 
-    private fun notLike() {
-
-    }
-
     private fun initAdapter() = with(binding) {
         likeRecycler.apply {
             itemAnimator = null
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = likeAdapter
         }
     }
