@@ -35,7 +35,7 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
     }
 
     private fun lifeCycleScope() = lifecycleScope.launch {
-        repeatOnLifecycle(Lifecycle.State.STARTED) {
+        repeatOnLifecycle(Lifecycle.State.CREATED) {
             launch {
                 viewModel.like.collect {
                     if (it.size > 0) {
