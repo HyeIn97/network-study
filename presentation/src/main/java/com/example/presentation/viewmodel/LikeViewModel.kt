@@ -10,14 +10,13 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LikeViewModel @Inject constructor(private val getLikeUseCase: GetLikeUseCase, private val deleteLikeUseCase: DeleteLikeUseCase) : ViewModel() {
     private val _like = MutableStateFlow<ArrayList<LikeModel>>(arrayListOf())
-    val like = _like.asStateFlow()
+    val like = _like.asSharedFlow()
 
     fun getLike() = viewModelScope.launch {
         _like.emit(getLikeUseCase().getOrNull() ?: arrayListOf())
