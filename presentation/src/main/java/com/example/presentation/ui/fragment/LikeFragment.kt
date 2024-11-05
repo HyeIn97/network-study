@@ -13,6 +13,7 @@ import com.example.domain.proto.model.LikeModel
 import com.example.presentation.adapter.LikeAdapter
 import com.example.presentation.base.BaseFragment
 import com.example.presentation.databinding.FragmentLikeBinding
+import com.example.presentation.util.ItemClickListener
 import com.example.presentation.viewmodel.LikeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -22,7 +23,13 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
     private val viewModel: LikeViewModel by viewModels()
     private val likeList = arrayListOf<LikeModel>()
     private val likeAdapter by lazy {
-        LikeAdapter(likeList)
+        LikeAdapter(likeList, object : ItemClickListener<LikeModel> {
+            override fun itemClick(position: Int, data: LikeModel) {
+                super.itemClick(position, data)
+
+                viewModel.deleteLike(position, data)
+            }
+        })
     }
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) = FragmentLikeBinding.inflate(inflater, container, false)
