@@ -38,7 +38,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() = with(binding) {
-        viewPager.adapter = ViewPagerAdapter(this@MainActivity)
+        viewPager.run {
+            isUserInputEnabled = false
+            adapter = ViewPagerAdapter(this@MainActivity)
+        }
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
