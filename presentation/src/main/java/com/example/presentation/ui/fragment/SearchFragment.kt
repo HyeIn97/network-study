@@ -50,40 +50,44 @@ class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
     }
 
     private fun lifeCycleScope() = lifecycleScope.launch {
-        repeatOnLifecycle(Lifecycle.State.STARTED) {
+        repeatOnLifecycle(Lifecycle.State.CREATED) {
             launch {
                 viewModel.search.collect {
                     it?.let {
-                        binding.run {
-                            if (it.total > 0) {
-                                if (viewModel.initQuery) {
-                                    totalText.text = getString(R.string.search_count, it.total)
-
-                                    totalText.visibility = View.VISIBLE
-                                    binding.emptyText.visibility = View.GONE
-                                    binding.bookRecycler.visibility = View.VISIBLE
-
-                                    bookList.clear()
-                                    bookList.addAll(it.bookList)
-                                    bookAdapter.notifyDataSetChanged()
-
-                                    viewModel.totalCount = it.total
-                                    viewModel.initQuery = false
-                                } else {
-                                    bookList.addAll(it.bookList)
-                                    bookAdapter.notifyItemRangeInserted(bookList.lastIndex - 9, bookList.lastIndex)
-                                }
-                            } else {
-                                bookList.clear()
-
-                                totalText.visibility = View.GONE
-                                binding.emptyText.visibility = View.VISIBLE
-                                binding.bookRecycler.visibility = View.GONE
-                            }
-                        }
+                        initView(it)
                     }
                 }
             }
+        }
+    }
+
+    private fun initView(items: SearchModel) = with(binding) {
+        if (items.total > 0) {
+            if (viewModel.initQuery) {
+                totalText.text = getString(R.string.search_count, items.total)
+
+                totalText.visibility = View.VISIBLE
+                binding.emptyText.visibility = View.GONE
+                binding.bookRecycler.visibility = View.VISIBLE
+
+                bookList.clear()
+                bookList.addAll(items.bookList)
+                bookAdapter.notifyItemRangeInserted(0, items.bookList.size)
+
+                viewModel.totalCount = items.total
+                viewModel.initQuery = false
+            } else {
+                val bookSize = bookList.size
+
+                bookList.addAll(items.bookList)
+                bookAdapter.notifyItemRangeInserted(bookSize, items.bookList.size)
+            }
+        } else {
+            bookList.clear()
+
+            totalText.visibility = View.GONE
+            binding.emptyText.visibility = View.VISIBLE
+            binding.bookRecycler.visibility = View.GONE
         }
     }
 

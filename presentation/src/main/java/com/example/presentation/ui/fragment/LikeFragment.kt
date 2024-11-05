@@ -38,37 +38,42 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getLike()
-        lifeCycleScope()
+        lifecycleScope()
     }
 
-    private fun lifeCycleScope() = lifecycleScope.launch {
-        repeatOnLifecycle(Lifecycle.State.CREATED) {
-            launch {
-                viewModel.like.collect {
-                    if (it.size > 0) {
-                        binding.likeRecycler.visibility = View.VISIBLE
-                        binding.emptyTxt.visibility = View.GONE
-
-                        likeList.addAll(it)
-
-                        hasLike()
-                    } else {
-                        binding.likeRecycler.visibility = View.GONE
-                        binding.emptyTxt.visibility = View.VISIBLE
+    private fun lifecycleScope() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                launch {
+                    viewModel.like.collect {
+                        initView(it)
                     }
                 }
             }
+        }
 
-            launch {
-                viewModel.deletePosition.collect {
-                    itemRemove(it)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.deletePosition.collect {
+                        itemRemove(it)
+                    }
                 }
             }
         }
     }
 
-    private fun hasLike() {
-        initAdapter()
+    private fun initView(items: ArrayList<LikeModel>) = with(binding) {
+        if (items.isNotEmpty()) {
+            likeRecycler.visibility = View.VISIBLE
+            emptyTxt.visibility = View.GONE
+
+            likeList.addAll(items)
+            initAdapter()
+        } else {
+            likeRecycler.visibility = View.GONE
+            emptyTxt.visibility = View.VISIBLE
+        }
     }
 
     private fun initAdapter() = with(binding) {
