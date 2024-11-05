@@ -51,6 +51,12 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
                     }
                 }
             }
+
+            launch {
+                viewModel.deletePosition.collect {
+                    itemRemove(it)
+                }
+            }
         }
     }
 
@@ -63,6 +69,16 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
             itemAnimator = null
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = likeAdapter
+        }
+    }
+
+    private fun itemRemove(position: Int) = with(binding) {
+        likeList.removeAt(position)
+        likeAdapter.notifyItemRemoved(position)
+
+        if (likeList.isEmpty()) {
+            likeRecycler.visibility = View.GONE
+            emptyTxt.visibility = View.VISIBLE
         }
     }
 }
