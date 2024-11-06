@@ -19,7 +19,9 @@ class LikeViewModel @Inject constructor(private val getLikeUseCase: GetLikeUseCa
     val like = _like.asSharedFlow()
 
     fun getLike() = viewModelScope.launch {
-        _like.emit(getLikeUseCase().getOrNull() ?: arrayListOf())
+        getLikeUseCase().collect {
+            _like.emit(it)
+        }
     }
 
     private val _deletePosition = MutableSharedFlow<Int>(

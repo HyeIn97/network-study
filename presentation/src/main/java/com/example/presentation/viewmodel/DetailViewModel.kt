@@ -9,8 +9,6 @@ import com.example.domain.proto.usecase.IsLikeUseCase
 import com.example.domain.proto.usecase.SetLikeUseCase
 import com.example.presentation.model.DetailLikeModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,7 +24,9 @@ class DetailViewModel @Inject constructor(
     val likeLiveData get() = _likeLiveData
 
     fun isLike() = viewModelScope.launch {
-        _likeLiveData.value = isLikeUseCase(like?.link ?: "")
+        isLikeUseCase(like?.link ?: "").collect {
+            _likeLiveData.value = it
+        }
     }
 
     fun setLike() = viewModelScope.launch {
