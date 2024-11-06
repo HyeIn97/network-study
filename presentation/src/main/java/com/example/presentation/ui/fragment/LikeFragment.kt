@@ -59,6 +59,12 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
                         itemRemove(it)
                     }
                 }
+
+                launch {
+                    viewModel.like.collect {
+                        updateLike(it)
+                    }
+                }
             }
         }
     }
@@ -68,11 +74,28 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
             likeRecycler.visibility = View.VISIBLE
             emptyTxt.visibility = View.GONE
 
-            likeList.addAll(items)
-            initAdapter()
+            if (viewModel.isFirst) {
+                viewModel.isFirst = false
+                likeList.addAll(items)
+                initAdapter()
+                viewModel.getLike()
+            }
         } else {
             likeRecycler.visibility = View.GONE
             emptyTxt.visibility = View.VISIBLE
+        }
+    }
+
+    private fun updateLike(items: ArrayList<LikeModel>) {
+        val likeSize = likeList.size
+
+        if (likeSize > items.size) {
+            likeList.clear()
+            likeList.addAll(items)
+            likeAdapter.notifyItemChanged(0, items.size)
+        } else if (likeSize < items.size) {
+            likeList.add(items.get(items.lastIndex))
+            likeAdapter.notifyItemChanged(0, items.size)
         }
     }
 

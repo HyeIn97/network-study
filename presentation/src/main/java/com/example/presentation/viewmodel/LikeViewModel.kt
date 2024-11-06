@@ -15,12 +15,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LikeViewModel @Inject constructor(private val getLikeUseCase: GetLikeUseCase, private val deleteLikeUseCase: DeleteLikeUseCase) : ViewModel() {
+    var isFirst = true
     private val _like = MutableStateFlow<ArrayList<LikeModel>>(arrayListOf())
     val like = _like.asSharedFlow()
 
     fun getLike() = viewModelScope.launch {
-        getLikeUseCase().collect {
-            _like.emit(it)
+        if (isFirst) {
+            val first = getLikeUseCase.firstGetLike()
+            _like.emit(first)
+        } else {
+            getLikeUseCase.getLike().collect {
+                _like.emit(it)
+            }
         }
     }
 

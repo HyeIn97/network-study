@@ -24,6 +24,7 @@ class LikeAdapter(private val list: ArrayList<LikeModel>, private val listener: 
             likeImage.setThumbnailUrl(item.image)
             likeTitle.text = item.title
             likeAuthor.text = item.author
+            likeBtn.isChecked = true
 
             likeBtn.setOnClickListener {
                 listener.itemClick(adapterPosition, item)
