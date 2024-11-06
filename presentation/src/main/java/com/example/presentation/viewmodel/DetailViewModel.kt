@@ -1,5 +1,6 @@
 package com.example.presentation.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.proto.model.LikeModel
@@ -21,11 +22,11 @@ class DetailViewModel @Inject constructor(
 ) : ViewModel() {
     var like: DetailLikeModel? = null
 
-    private val _isLike = MutableStateFlow(false)
-    val isLIke = _isLike.asStateFlow()
+    private val _likeLiveData = MutableLiveData<Boolean>()
+    val likeLiveData get() = _likeLiveData
 
     fun isLike() = viewModelScope.launch {
-        _isLike.emit(isLikeUseCase(like?.link ?: "").getOrNull() ?: false)
+        _likeLiveData.value = isLikeUseCase(like?.link ?: "")
     }
 
     fun setLike() = viewModelScope.launch {
