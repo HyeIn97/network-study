@@ -13,11 +13,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.search.model.SearchModel
-import com.example.presentation.model.DetailModel
 import com.example.presentation.R
 import com.example.presentation.adapter.BookAdapter
 import com.example.presentation.base.BaseFragment
 import com.example.presentation.databinding.FragmentSearchBinding
+import com.example.presentation.model.DetailLikeModel
 import com.example.presentation.ui.activity.DetailActivity
 import com.example.presentation.util.ItemClickListener
 import com.example.presentation.viewmodel.SearchViewModel
@@ -30,8 +30,8 @@ class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
 
     private val bookList = arrayListOf<SearchModel.BookModel>()
     private val bookAdapter by lazy {
-        BookAdapter(bookList, object : ItemClickListener<DetailModel> {
-            override fun itemClick(position: Int, data: DetailModel) {
+        BookAdapter(bookList, object : ItemClickListener<DetailLikeModel> {
+            override fun itemClick(position: Int, data: DetailLikeModel) {
                 super.itemClick(position, data)
 
                 startActivity(Intent(requireContext(), DetailActivity::class.java).apply { putExtra("data", data) })
@@ -50,40 +50,44 @@ class SearchFragment() : BaseFragment<FragmentSearchBinding>() {
     }
 
     private fun lifeCycleScope() = lifecycleScope.launch {
-        repeatOnLifecycle(Lifecycle.State.STARTED) {
+        repeatOnLifecycle(Lifecycle.State.CREATED) {
             launch {
                 viewModel.search.collect {
                     it?.let {
-                        binding.run {
-                            if (it.total > 0) {
-                                if (viewModel.initQuery) {
-                                    totalText.text = getString(R.string.search_count, it.total)
-
-                                    totalText.visibility = View.VISIBLE
-                                    binding.emptyText.visibility = View.GONE
-                                    binding.bookRecycler.visibility = View.VISIBLE
-
-                                    bookList.clear()
-                                    bookList.addAll(it.bookList)
-                                    bookAdapter.notifyDataSetChanged()
-
-                                    viewModel.totalCount = it.total
-                                    viewModel.initQuery = false
-                                } else {
-                                    bookList.addAll(it.bookList)
-                                    bookAdapter.notifyItemRangeInserted(bookList.lastIndex - 9, bookList.lastIndex)
-                                }
-                            } else {
-                                bookList.clear()
-
-                                totalText.visibility = View.GONE
-                                binding.emptyText.visibility = View.VISIBLE
-                                binding.bookRecycler.visibility = View.GONE
-                            }
-                        }
+                        initView(it)
                     }
                 }
             }
+        }
+    }
+
+    private fun initView(items: SearchModel) = with(binding) {
+        if (items.total > 0) {
+            if (viewModel.initQuery) {
+                totalText.text = getString(R.string.search_count, items.total)
+
+                totalText.visibility = View.VISIBLE
+                binding.emptyText.visibility = View.GONE
+                binding.bookRecycler.visibility = View.VISIBLE
+
+                bookList.clear()
+                bookList.addAll(items.bookList)
+                bookAdapter.notifyItemRangeInserted(0, items.bookList.size)
+
+                viewModel.totalCount = items.total
+                viewModel.initQuery = false
+            } else {
+                val bookSize = bookList.size
+
+                bookList.addAll(items.bookList)
+                bookAdapter.notifyItemRangeInserted(bookSize, items.bookList.size)
+            }
+        } else {
+            bookList.clear()
+
+            totalText.visibility = View.GONE
+            binding.emptyText.visibility = View.VISIBLE
+            binding.bookRecycler.visibility = View.GONE
         }
     }
 

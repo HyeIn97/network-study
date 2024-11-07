@@ -3,6 +3,8 @@
 
     <string name="expectation">오류가 발생했어요.\n잠시 후 다시 시도해 주세요.</string>
 
+    <string name="app_finish">한번 더 누르면 종료 됩니다.</string>
+
     <string name="search_tab">검색</string>
     <string name="like_tab">좋아요</string>
 
@@ -10,4 +12,6 @@
     <string name="search_button">검색</string>
     <string name="search_empty">검색 내역이 없습니다.</string>
     <string name="search_count">총 개수 : %d</string>
+
+    <string name="like_empty">좋아요 내역이 없습니다.</string>
 </resources>

@@ -8,6 +8,9 @@ object Dependency {
         const val CORE_VERSION = "1.13.1"
         const val DATASTORE_VERSION = "1.1.1"
 
+        // Kotlin
+        const val KOTLIN_COROUTINES_VERSION = "1.9.0"
+
         // Library
         const val HILT_VERSION = "2.48"
         const val HILT_COMPILER_VERSION = "2.48"
@@ -30,6 +33,10 @@ object Dependency {
         const val CORE = "androidx.core:core-ktx:${Versions.CORE_VERSION}"
         const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES_VERSION}"
         const val DATASTORE = "androidx.datastore:datastore:${Versions.DATASTORE_VERSION}"
+    }
+
+    object KotlinX {
+        const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.KOTLIN_COROUTINES_VERSION}"
     }
 
     object Libraries {

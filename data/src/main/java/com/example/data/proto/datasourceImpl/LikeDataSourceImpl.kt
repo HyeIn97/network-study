@@ -44,4 +44,16 @@ class LikeDataSourceImpl @Inject constructor(@ApplicationContext private val con
             preferences.toBuilder().removeLike(removeIndex).build()
         }
     }
+
+    override fun isLike(likeUrlKey: String): Flow<Boolean> = flow {
+        context.likeDataStore.data.collect { preferences ->
+            val likeList = arrayListOf<String>()
+
+            preferences.likeList.map { data ->
+                likeList.add(data.link)
+            }
+
+            emit(likeList.contains(likeUrlKey))
+        }
+    }
 }
